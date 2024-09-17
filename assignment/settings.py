@@ -22,16 +22,25 @@ from mongoengine import connect
 #     authentication_source='admin'
 # )
 
-MONGODB_SETTINGS = {
-    'db':'Student_Record',
-    'host':'mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/',
-    # 'port':27017
-}
+# MONGODB_SETTINGS = {
+#     'db':'Student_Record',
+#     'host':'mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/',
+# }
+
+# connect(
+#     db = MONGODB_SETTINGS['db'],
+#     host=MONGODB_SETTINGS['host'],
+#     connectTimeoutMS = 30000  # 30 seconds
+# )
+uri = "mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/"
+database = "Student_Record"
 
 connect(
-    db = MONGODB_SETTINGS['db'],
-    host=MONGODB_SETTINGS['host']
+    db=database,
+    host=f'{uri}{database}?retryWrites=true&w=majority',
+    port=27017,
 )
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
