@@ -10,15 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from mongoengine import connect
 
+# connect(
+#     db="Student_Record",
+#     username="abdulhadi",
+#     password="9AC1bKAghCPoM4zJ",
+#     host=f'mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/',
+#     authentication_source='admin'
+# )
+
+MONGODB_SETTINGS = {
+    'db':'Student_Record',
+    'host':'mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/',
+    # 'port':27017
+}
+
 connect(
-    db="new_db",
-    username="abdulhadi",
-    password="9AC1bKAghCPoM4zJ",
-    host=f'mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/',
-    authentication_source='admin'
+    db = MONGODB_SETTINGS['db'],
+    host=MONGODB_SETTINGS['host']
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'student',
+    'mongoengine',
 ]
 
 REST_FRAMEWORK = {
