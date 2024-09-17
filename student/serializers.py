@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from .models import Student
 
 class StudentSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
@@ -7,4 +6,7 @@ class StudentSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
     def create(self, validated_data):
-        return Student.objects.create(**validated_data)
+        from .models import Student
+        student = Student(**validated_data)
+        student.save()
+        return student

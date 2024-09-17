@@ -32,13 +32,32 @@ from mongoengine import connect
 #     host=MONGODB_SETTINGS['host'],
 #     connectTimeoutMS = 30000  # 30 seconds
 # )
-uri = "mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/"
-database = "Student_Record"
 
+# This is not working :
+# uri = "mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/"
+# database = "Student_Record"
+
+# connect(
+#     db=database,
+#     host=f'{uri}{database}?retryWrites=true&w=majority',
+#     port=27017,
+# )
+# uri = "mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/"
+# database = "Student_Record"
+
+# connect(
+#     db=database,
+#     host=uri,  # Pass the URI directly
+#     alias="default",  # This is a default connection alias
+#     retryWrites=True,
+#     w="majority"
+# )
 connect(
-    db=database,
-    host=f'{uri}{database}?retryWrites=true&w=majority',
-    port=27017,
+    db='Student_Record',
+    host='mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/',
+    alias='default',
+    retryWrites=True,
+    w='majority'
 )
 
 
@@ -71,15 +90,20 @@ INSTALLED_APPS = [
     'student',
     'mongoengine',
 ]
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [],
+#     'DEFAULT_PERMISSION_CLASSES': [],
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
     ],
+    
 }
 
 MIDDLEWARE = [

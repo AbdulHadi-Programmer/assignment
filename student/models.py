@@ -1,6 +1,9 @@
-from mongoengine import Document, fields
+from django.db import models
 
-class Student(Document):
-    name = fields.StringField(required=True)
-    age = fields.IntField(required=True)
-    email = fields.EmailField(required=True)
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    email = models.EmailField(unique=True)
+    
+    def __str__(self):
+        return self.name
