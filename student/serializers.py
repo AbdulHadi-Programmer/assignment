@@ -1,12 +1,7 @@
 from rest_framework import serializers
+from .models import Student
 
-class StudentSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
-    age = serializers.IntegerField()
-    email = serializers.EmailField()
-
-    def create(self, validated_data):
-        from .models import Student
-        student = Student(**validated_data)
-        student.save()
-        return student
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student  # Ensure you're referencing the correct model
+        fields = '__all__'  # Or specify the exact fields ['name', 'age', 'email']

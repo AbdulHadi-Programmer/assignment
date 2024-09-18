@@ -56,9 +56,27 @@ connect(
     db='Student_Record',
     host='mongodb+srv://abdulhadi:9AC1bKAghCPoM4zJ@cluster0.glvzl.mongodb.net/',
     alias='default',
-    retryWrites=True,
-    w='majority'
+    # # retryWrites=True,
+    # # w='majority',
+    # port=27017,
 )
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,7 +98,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
